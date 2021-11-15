@@ -8,11 +8,8 @@
  * @Encoding: UTF-8
  */
 
-#include "F28x_Project.h"
-#include "driverlib.h"
-#include "device.h"
 #include "main.h"
-#include "HAL_System.h"
+
 
 #if 1
 void main()
@@ -21,6 +18,11 @@ void main()
 // 初始化系统
 //
     BSW_InitSystem();
+
+    
+
+
+
     while(1)
     {
         ESTOP0;
