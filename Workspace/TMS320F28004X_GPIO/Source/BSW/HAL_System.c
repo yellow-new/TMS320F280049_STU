@@ -14,41 +14,36 @@
 
 void BSW_InitSystem()
 {
-    //Step 1. Initialize System Control:
-    //PLL, WatchDog,enabe Peripheral Clocks
-    //This example function is found in the f28004x_sysctrl.c file.
+    //
+    // Initialize device clock and peripherals
     //
     InitSysCtrl();
 
     //
-    //Step 2. Initialize GPIO
+    // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     InitGpio();
 
     //
-    //Step 3. Clear all __interrupts and initialize PIE vector table:
-    //Disable CPU __interrupts
+    // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     DINT;
-
-    //
-    //Initialize the PIE control registers to their default state.
-    //The default state is all PIE interrupts disabled and flags
-    //are cleared.
-    //
     InitPieCtrl();
-
-    //
-    //Disable CPU interrupts and clear all CPU interrupt flags:
-    //
     IER = 0x0000;
     IFR = 0x0000;
 
     //
-    //Initialize the PIE vector table with pointers to the shell Interrupt
-    //Service Routines (ISR).
+    // Initialize the PIE vector table with pointers to the shell Interrupt
+    // Service Routines (ISR).
     //
     InitPieVectTable();
+
+    //
+    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
+    //
+    EINT;
+    ERTM;
+
 }
 
 

@@ -2,8 +2,8 @@
  * @Author: YellowNew
  * @Date: 2021-11-12 21:32:07
  * @LastEditors: Do not edit
- * @LastEditTime: 2021-11-14 11:27:32
- * @FilePath: \TMS320F28004X\Source\ASW\main.c
+ * @LastEditTime: 2021-11-15 19:56:44
+ * @FilePath: \TMS320F28004X_GPIO\Source\ASW\main.c
  * @Description: 
  * @Encoding: UTF-8
  */
@@ -14,19 +14,35 @@
 #if 1
 void main()
 {
-//
-// 初始化系统
-//
+
     BSW_InitSystem();
 
-    
+    BSW_InitGpio();
 
 
+     //
+     for(;;)
+     {
+         //
+         // Turn on LED
+         //
+         LED_ON();
 
-    while(1)
-    {
-        ESTOP0;
-    }
+         //
+         // Delay for a bit.
+         //
+         DELAY_US(500000);
+
+         //
+         // Turn off LED
+         //
+         LED_OFF();
+
+         //
+         // Delay for a bit.
+         //
+         DELAY_US(500000);
+     }
 
 }
 #else
