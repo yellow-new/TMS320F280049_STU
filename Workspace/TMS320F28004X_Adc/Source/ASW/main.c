@@ -1,15 +1,13 @@
 /*
  * @Author: YellowNew
  * @Date: 2021-11-12 21:32:07
- * @LastEditors: Do not edit
- * @LastEditTime: 2021-11-15 19:56:44
- * @FilePath: \TMS320F28004X_GPIO\Source\ASW\main.c
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-11-20 17:15:13
+ * @FilePath: \TMS320F28004X_Adc\Source\ASW\main.c
  * @Description: 
  * @Encoding: UTF-8
  */
-
 #include "main.h"
-
 
 #if 1
 void main()

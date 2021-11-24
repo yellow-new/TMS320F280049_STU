@@ -29,3 +29,5 @@ typedef void*               HANDLE;
 typedef unsigned int        BOOL;    
 
 #endif /*_BASE_TYPE_H_*/
+
+
