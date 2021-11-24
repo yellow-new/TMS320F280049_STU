@@ -12,8 +12,10 @@
 //
 // ConfigureADC - Function to configure and power up ADCA.
 //
-void ConfigureADC(void)
+void BSW_ConfigureADC(void)
 {
+
+
     //
     // Setup VREF as internal
     //
@@ -42,10 +44,44 @@ void ConfigureADC(void)
 
 
 //
-// initADCSOC - Function to configure ADCA's SOC0 to be triggered by ePWM1.
+// BSW_initADCSOCtoEPMW - Function to configure ADCA's SOC_x to be triggered by ePWM_x.
 //
-void initADCSOC(void)
+void BSW_initADCSOCtoEPMW(void)
 {
+    //
+    // Map ISR functions
+    //
+    EALLOW;
+    PieVectTable.ADCA1_INT = &adcA1ISR;     // Function for ADCA interrupt 1
+    EDIS;
+
+    //
+    // Enable global Interrupts and higher priority real-time debug events:
+    //
+    IER |= M_INT1;  // Enable group 1 interrupts
+
+    //
+    // Set the PWM start
+    //
+    EALLOW;
+
+    EPwm1Regs.ETSEL.bit.SOCAEN = 0;     // Disable SOC on A group
+    EPwm1Regs.ETSEL.bit.SOCASEL = 4;    // Select SOC on up-count
+    EPwm1Regs.ETPS.bit.SOCAPRD = 1;     // Generate pulse on 1st event
+
+    EPwm1Regs.CMPA.bit.CMPA = 0x0800;   // Set compare A value to 2048 counts
+    EPwm1Regs.TBPRD = 0x1000;           // Set period to 4096 counts
+
+    EPwm1Regs.TBCTL.bit.CTRMODE = 3;    // Freeze counter
+
+    //
+    // Start ePWM
+    //
+    EPwm1Regs.ETSEL.bit.SOCAEN = 1;    // Enable SOCA
+    EPwm1Regs.TBCTL.bit.CTRMODE = 0;   // Unfreeze, and enter up count mode
+
+    EDIS;
+
     //
     // Select the channels to convert and the end of conversion flag
     //

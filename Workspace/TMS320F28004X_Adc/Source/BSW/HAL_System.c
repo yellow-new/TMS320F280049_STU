@@ -38,12 +38,6 @@ void BSW_InitSystem()
     //
     InitPieVectTable();
 
-    //
-    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
-    //
-    EINT;
-    ERTM;
-
 }
 
 

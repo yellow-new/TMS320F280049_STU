@@ -2,7 +2,7 @@
  * @Author: YellowNew
  * @Date: 2021-11-12 21:32:07
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-11-20 17:15:13
+ * @LastEditTime: 2021-11-24 13:01:42
  * @FilePath: \TMS320F28004X_Adc\Source\ASW\main.c
  * @Description: 
  * @Encoding: UTF-8
@@ -12,37 +12,47 @@
 #if 1
 void main()
 {
-
+    //
+    // 系统初始化
+    //
     BSW_InitSystem();
 
+    //
+    // Gpio初始化
+    //
     BSW_InitGpio();
 
+    //
+    // ADC基本配置初始化
+    //
+    BSW_ConfigureADC();
 
-     //
+    //
+    // ADC触发初始化
+    //
+    BSW_initADCSOCtoEPMW();
+
+
+
+    //
+    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
+    //
+    EINT;
+    ERTM;
+
      for(;;)
      {
-         //
-         // Turn on LED
-         //
-         LED_ON();
 
-         //
-         // Delay for a bit.
-         //
-         DELAY_US(500000);
-
-         //
-         // Turn off LED
-         //
-         LED_OFF();
-
-         //
-         // Delay for a bit.
-         //
-         DELAY_US(500000);
      }
 
 }
+
+
+
+
+
+
+
 #else
 
 void main(void)
