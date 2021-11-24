@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "driverlib.h": "c",
+        "f28x_project.h": "c",
+        "device.h": "c",
+        "main.h": "c",
+        "hal_system.h": "c",
+        "hal_gpio.h": "c",
+        "hal_adc.h": "c",
+        "hal_sci.h": "c",
+        "basetype.h": "c",
+        "asw_interrupt.h": "c",
+        "asw_led.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
